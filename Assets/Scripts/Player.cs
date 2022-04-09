@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
+using RengeGames.HealthBars;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
@@ -12,9 +13,14 @@ public class Player : MonoBehaviour
     public float maxPowerRadius;
     public Animator flapAnimator;
     public SpriteRenderer birdRenderer;
+    public UltimateCircularHealthBar healthBar;
+
+    public float health = 1f;
+    public float healthChipRate = 0.1f;
+    public float healthBarMult = 0.333f;
+    public float healthPowerDrain = 0.1f;
 
     private bool flapping = false;
-    private int count = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -44,9 +50,9 @@ public class Player : MonoBehaviour
 
                 direction3 *= maxPower / maxPowerRadius;
 
+                health -= healthPowerDrain * (direction3.magnitude / maxPower);
 
                 rigidbody2D.AddForce(new Vector2(direction3.x, direction3.y), ForceMode2D.Impulse);
-                Debug.Log(count++);
             }
         }
         else if (flapping)
@@ -58,5 +64,10 @@ public class Player : MonoBehaviour
         // Point sprite in direction of travel
         bool goingLeft = rigidbody2D.velocity.x < 0;
         birdRenderer.flipX = goingLeft;
+
+        // Chip health
+        health = Mathf.Clamp(health - healthChipRate * Time.deltaTime, 0, 1);
+
+        healthBar.SetPercent(health * healthBarMult);
     }
 }
