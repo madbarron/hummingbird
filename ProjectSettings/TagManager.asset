@@ -41,3 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Sky
+    uniqueID: 376955881
+    locked: 0
+  - name: Mountains
+    uniqueID: 2194629895
+    locked: 0
+  - name: Hills
+    uniqueID: 147924475
+    locked: 0
+  - name: Game
+    uniqueID: 3633720815
+    locked: 0
+  - name: Foreground
+    uniqueID: 3865328471
+    locked: 0
