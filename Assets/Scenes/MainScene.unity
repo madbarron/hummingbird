@@ -457,7 +457,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followTarget: {fileID: 1892470092}
   followX: 1
-  followY: 1
+  followY: 0
   scale: 1
 --- !u!1 &619394800
 GameObject:
@@ -1157,6 +1157,7 @@ MonoBehaviour:
   maxPower: 20
   maxPowerRadius: 4
   flapAnimator: {fileID: 1996648133}
+  birdRenderer: {fileID: 1996648131}
 --- !u!1 &1971458160
 GameObject:
   m_ObjectHideFlags: 0

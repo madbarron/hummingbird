@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public float maxPower;
     public float maxPowerRadius;
     public Animator flapAnimator;
+    public SpriteRenderer birdRenderer;
 
     private bool flapping = false;
     private int count = 0;
@@ -53,5 +54,9 @@ public class Player : MonoBehaviour
             flapping = false;
             flapAnimator.SetTrigger("Up");
         }
+
+        // Point sprite in direction of travel
+        bool goingLeft = rigidbody2D.velocity.x < 0;
+        birdRenderer.flipX = goingLeft;
     }
 }
