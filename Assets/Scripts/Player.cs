@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
@@ -9,6 +10,7 @@ public class Player : MonoBehaviour
     //public float powerScale;
     public float maxPower;
     public float maxPowerRadius;
+    public Animator flapAnimator;
 
     private bool flapping = false;
     private int count = 0;
@@ -29,6 +31,7 @@ public class Player : MonoBehaviour
             if (!flapping)
             {
                 flapping = true;
+                flapAnimator.SetTrigger("Down");
 
                 // Find relative direction and distance
                 Vector3 direction3 = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
@@ -45,9 +48,10 @@ public class Player : MonoBehaviour
                 Debug.Log(count++);
             }
         }
-        else
+        else if (flapping)
         {
             flapping = false;
+            flapAnimator.SetTrigger("Up");
         }
     }
 }

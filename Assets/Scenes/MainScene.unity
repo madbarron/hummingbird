@@ -457,7 +457,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followTarget: {fileID: 1892470092}
   followX: 1
-  followY: 0
+  followY: 1
   scale: 1
 --- !u!1 &619394800
 GameObject:
@@ -1156,6 +1156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxPower: 20
   maxPowerRadius: 4
+  flapAnimator: {fileID: 1996648133}
 --- !u!1 &1971458160
 GameObject:
   m_ObjectHideFlags: 0
@@ -1202,8 +1203,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1996648132}
   - component: {fileID: 1996648131}
+  - component: {fileID: 1996648133}
   m_Layer: 0
-  m_Name: Red_A_Frame_01
+  m_Name: Bird
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1276,3 +1278,23 @@ Transform:
   m_Father: {fileID: 1892470092}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1996648133
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1996648130}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 66c0a2531b0e79f4d86530a177b9a43d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
