@@ -18,8 +18,20 @@ public class Feeder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        energy = Mathf.Clamp(energy - .1f * Time.deltaTime, 0, 1);
+        //energy = Mathf.Clamp(energy - .1f * Time.deltaTime, 0, 1);
         GetComponent<Animator>().Play("Drain", 0, 1 - (energy / maxEnergy));
     }
 
+    /// <summary>
+    /// Drains energy from the feeder.
+    /// </summary>
+    /// <param name="requested"></param>
+    /// <returns>Amount of energy actually drained</returns>
+    public float DrainEnergy(float requested)
+    {
+        float delivered = Mathf.Clamp(requested, 0, energy);
+        energy -= delivered;
+        GetComponent<Animator>().Play("Drain", 0, 1 - (energy / maxEnergy));
+        return delivered;
+    }
 }

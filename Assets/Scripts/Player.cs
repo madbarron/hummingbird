@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     public float healthBarMult = 0.333f;
     public float healthPowerDrain = 0.1f;
 
+    public float drinkRate = 0.5f;
+
     private bool flapping = false;
 
     // Start is called before the first frame update
@@ -69,5 +71,23 @@ public class Player : MonoBehaviour
         health = Mathf.Clamp(health - healthChipRate * Time.deltaTime, 0, 1);
 
         healthBar.SetPercent(health * healthBarMult);
+    }
+
+    public void OnTriggerStay2D(Collider2D collision)
+    {
+        Feeder feeder = collision.gameObject.GetComponent<Feeder>();
+
+        if (feeder == null)
+        {
+            return;
+        }
+
+        float toDrink = Mathf.Clamp(1 - health, 0, drinkRate * Time.deltaTime);
+        if (toDrink > 0)
+        {
+            float drank = feeder.DrainEnergy(toDrink);
+            health += drank;
+            Debug.Log(drank);
+        }
     }
 }
