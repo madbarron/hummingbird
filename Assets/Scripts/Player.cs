@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Animations;
 using RengeGames.HealthBars;
 using UnityEngine.Events;
+using TMPro;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
@@ -23,10 +23,12 @@ public class Player : MonoBehaviour
     public bool godMode;
 
     public float drinkRate = 0.5f;
-    public UnityEvent onGameOver;    
+    public UnityEvent onGameOver;
+    public TextMeshProUGUI scoreText;
 
     private bool flapping = false;
     private bool dead = false;
+    private int score = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -132,6 +134,12 @@ public class Player : MonoBehaviour
         {
             Die();
         }
+    }
+
+    public void Eat()
+    {
+        score++;
+        scoreText.text = score.ToString();
     }
 
     protected void Die()

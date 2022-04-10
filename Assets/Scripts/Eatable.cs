@@ -22,6 +22,7 @@ public class Eatable : MonoBehaviour
 
         if (other != null)
         {
+            other.Eat();
             Destroy(gameObject);
         }
     }
