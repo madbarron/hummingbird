@@ -40,7 +40,6 @@ public class SceneryTiler : MonoBehaviour
             Destroy(tiles[0].gameObject);
             tiles.RemoveAt(0);
             leftMost = tiles[0].transform.position.x;
-            Debug.Log("Removed tile left");
         }
 
         // Check to see if we need more tiles left
@@ -50,7 +49,6 @@ public class SceneryTiler : MonoBehaviour
             tile.transform.position = new Vector3(leftMost - tileWidth, transform.position.y);
             leftMost = tile.transform.position.x;
             tiles.Insert(0, tile);
-            Debug.Log("Added tile left");
         }
 
         // Check if we need fewer tiles right
@@ -63,7 +61,6 @@ public class SceneryTiler : MonoBehaviour
             tiles.RemoveAt(lastTile);
             lastTile--;
             rightMost = tiles[lastTile].transform.position.x;
-            Debug.Log("Removed tile right");
 
         }
 
@@ -74,7 +71,6 @@ public class SceneryTiler : MonoBehaviour
             tile.transform.position = new Vector3(rightMost + tileWidth, transform.position.y);
             rightMost = tile.transform.position.x;
             tiles.Add(tile);
-            Debug.Log("Added tile right");
         }
 
     }
