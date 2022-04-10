@@ -12,6 +12,7 @@ public class SceneryTiler : MonoBehaviour
     public float tileWidth;
 
     public List<GameObject> tiles = new List<GameObject>();
+    public bool persist = false;
 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +44,7 @@ public class SceneryTiler : MonoBehaviour
         // Check to see if we need fewer tiles left
         leftMost = tiles[0].transform.position.x;
 
-        while (leftMost < cameraPos - bufferLeft - tileWidth)
+        while (!persist && leftMost < cameraPos - bufferLeft - tileWidth)
         {
             Destroy(tiles[0].gameObject);
             tiles.RemoveAt(0);
@@ -63,7 +64,7 @@ public class SceneryTiler : MonoBehaviour
         lastTile = tiles.Count - 1;
         rightMost = tiles[lastTile].transform.position.x;
 
-        while (rightMost > cameraPos + bufferRight + tileWidth)
+        while (!persist && rightMost > cameraPos + bufferRight + tileWidth)
         {
             Destroy(tiles[lastTile]);
             tiles.RemoveAt(lastTile);
