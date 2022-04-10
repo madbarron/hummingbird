@@ -37,12 +37,11 @@ public class Player : MonoBehaviour
     }
 
     // Update is called once per frame
-
     private void Update()
     {
         if (godMode) health = 1;
 
-        if (health == 0)
+        if (dead)
         {
             return;
         }
@@ -72,14 +71,18 @@ public class Player : MonoBehaviour
                 // Find relative direction and distance
                 Vector3 direction3 = Camera.main.ScreenToWorldPoint(new Vector3(clickLocation.x, clickLocation.y)) - transform.position;
 
-                if (direction3.magnitude > maxPowerRadius)
-                {
-                    direction3 = direction3.normalized * maxPowerRadius;
-                }
+                // Scale input to unit circle, 1 magnitude is 100% power
+                direction3 /= maxPowerRadius;
 
-                direction3 *= maxPower / maxPowerRadius;
+                // Clamp desired vector according to remaining health
+                float maxAvailablePower = Mathf.Clamp(health / healthPowerDrain, 0, 1);
+                direction3 = Vector3.ClampMagnitude(direction3, maxAvailablePower);
 
-                health -= healthPowerDrain * (direction3.magnitude / maxPower);
+                // Pay for the flap
+                health -= healthPowerDrain * direction3.magnitude;
+
+                // Scale from input to physics
+                direction3 *= maxPower;
 
                 rigidbody2D.AddForce(new Vector2(direction3.x, direction3.y), ForceMode2D.Impulse);
             }
@@ -97,21 +100,10 @@ public class Player : MonoBehaviour
         // Chip health
         health = Mathf.Clamp(health - healthChipRate * Time.deltaTime, 0, 1);
         healthBar.SetPercent(health * healthBarMult);
-
-        // Check die!
-        //if (health == 0)
-        //{
-        //    Die();
-        //}
     }
 
     public void OnTriggerStay2D(Collider2D collision)
     {
-        //if (health <= 0)
-        //{
-        //    return;
-        //}
-
         Feeder feeder = collision.gameObject.GetComponent<Feeder>();
 
         if (feeder == null)
@@ -130,7 +122,7 @@ public class Player : MonoBehaviour
     // Don't die until you run into something
     public void OnCollisionStay2D(Collision2D collision)
     {
-        if (health <= 0)
+        if (health <= 0 && !flapping)
         {
             Die();
         }
@@ -138,6 +130,10 @@ public class Player : MonoBehaviour
 
     public void Eat()
     {
+        if (dead)
+        {
+            return;
+        }
         score++;
         scoreText.text = score.ToString();
     }
