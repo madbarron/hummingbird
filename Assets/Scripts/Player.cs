@@ -9,7 +9,6 @@ using UnityEngine.Events;
 public class Player : MonoBehaviour
 {
     private Rigidbody2D rigidbody2D;
-    //public float powerScale;
     public float maxPower;
     public float maxPowerRadius;
     public Animator flapAnimator;
@@ -27,6 +26,7 @@ public class Player : MonoBehaviour
     public UnityEvent onGameOver;    
 
     private bool flapping = false;
+    private bool dead = false;
 
     // Start is called before the first frame update
     void Start()
@@ -97,20 +97,18 @@ public class Player : MonoBehaviour
         healthBar.SetPercent(health * healthBarMult);
 
         // Check die!
-        if (health == 0)
-        {
-            rigidbody2D.constraints = RigidbodyConstraints2D.None;
-            healthBar.gameObject.SetActive(false);
-            onGameOver?.Invoke();
-        }
+        //if (health == 0)
+        //{
+        //    Die();
+        //}
     }
 
     public void OnTriggerStay2D(Collider2D collision)
     {
-        if (health <= 0)
-        {
-            return;
-        }
+        //if (health <= 0)
+        //{
+        //    return;
+        //}
 
         Feeder feeder = collision.gameObject.GetComponent<Feeder>();
 
@@ -124,6 +122,26 @@ public class Player : MonoBehaviour
         {
             float drank = feeder.DrainEnergy(toDrink);
             health += drank;
+        }
+    }
+
+    // Don't die until you run into something
+    public void OnCollisionStay2D(Collision2D collision)
+    {
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    protected void Die()
+    {
+        if (!dead)
+        {
+            dead = true;
+            onGameOver?.Invoke();
+            rigidbody2D.constraints = RigidbodyConstraints2D.None;
+            healthBar.gameObject.SetActive(false);
         }
     }
 }
