@@ -8,23 +8,31 @@ public class SceneryTiler : MonoBehaviour
     public float bufferRight;
     public float bufferLeft;
 
-    public GameObject tilePrefab;
+    public List<GameObject> tilePrefabs;
     public float tileWidth;
 
-    private List<GameObject> tiles;
+    public List<GameObject> tiles = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
     {
-        GameObject tile = Instantiate(tilePrefab, transform);
-        tile.transform.position = transform.position;
-        //tiles.Add(tile);
+        if (tiles.Count == 0)
+        {
+            GameObject tile = Instantiate(tilePrefabs[0], transform);
+            tile.transform.position = transform.position;
+            tiles.Add(tile);
+        }
 
-        tiles = new List<GameObject>() { tile };
+        Evaluate();
     }
 
     // Update is called once per frame
     void Update()
+    {
+        Evaluate();
+    }
+
+    protected void Evaluate()
     {
         float cameraPos = Camera.position.x;
         float leftMost;
@@ -45,7 +53,7 @@ public class SceneryTiler : MonoBehaviour
         // Check to see if we need more tiles left
         while (leftMost > cameraPos - bufferLeft)
         {
-            tile = Instantiate(tilePrefab, transform);
+            tile = Instantiate(randomPrefab, transform);
             tile.transform.position = new Vector3(leftMost - tileWidth, transform.position.y);
             leftMost = tile.transform.position.x;
             tiles.Insert(0, tile);
@@ -67,11 +75,19 @@ public class SceneryTiler : MonoBehaviour
         // Check if we need more tiles right
         if (rightMost < cameraPos + bufferRight)
         {
-            tile = Instantiate(tilePrefab, transform);
+            tile = Instantiate(randomPrefab, transform);
             tile.transform.position = new Vector3(rightMost + tileWidth, transform.position.y);
             rightMost = tile.transform.position.x;
             tiles.Add(tile);
         }
+    }
 
+    protected GameObject randomPrefab
+    {
+        get
+        {
+            int index = (int)(tilePrefabs.Count * Random.value);
+            return tilePrefabs[index];
+        }
     }
 }

@@ -390,8 +390,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 1.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1714824230}
+  m_Children: []
   m_Father: {fileID: 367228479}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -410,8 +409,10 @@ MonoBehaviour:
   Camera: {fileID: 519420032}
   bufferRight: 10
   bufferLeft: 10
-  tilePrefab: {fileID: 5459243578024483412, guid: 9a6d0b95687402644a4d2034179ce970, type: 3}
+  tilePrefabs:
+  - {fileID: 5459243578024483412, guid: 9a6d0b95687402644a4d2034179ce970, type: 3}
   tileWidth: 2.5
+  tiles: []
 --- !u!1 &367228478
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,80 +510,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8792786658123783803, guid: eddc7f88b230c61409732e3d2e506fab, type: 3}
   m_PrefabInstance: {fileID: 134303429}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &466957675
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: radialSegmentedHealthBarInstance
-  m_Shader: {fileID: -6465566751694194690, guid: 754db91c7cf454b4a937cbe5f4a0a40b, type: 3}
-  m_ShaderKeywords: EMPTY_NOISE_ON ETC1_EXTERNAL_ALPHA PULSATE_WHEN_LOW_ON
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_Lightmaps:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_LightmapsInd:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_ShadowMasks:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - CONTENT_NOISE: 0
-    - EMPTY_NOISE: 1
-    - OVERLAY_NOISE: 0
-    - PULSATE_WHEN_LOW: 1
-    - Vector1_5F1B012: 59.6
-    - Vector1_ECC2C9F3: 5.5
-    - Vector1_F9D53FA9: 0
-    - _BorderSpacing: 0.02
-    - _BorderWidth: 0.02
-    - _ContentNoiseScale: 100
-    - _ContentNoiseStrength: 0.2
-    - _EmptyNoiseScale: 100
-    - _EmptyNoiseStrength: 0.5
-    - _LineWidth: 0.005
-    - _OverlayNoiseScale: 100
-    - _OverlayNoiseStrength: 0.5
-    - _PulseActivationThreshold: 0.5
-    - _PulseSpeed: 10
-    - _QueueControl: 0
-    - _QueueOffset: 0
-    - _Radius: 0.4
-    - _RemoveBorder: 0.5
-    - _RemoveSegments: 0
-    - _Rotation: 330
-    - _SecondRemoveSegments: 0.5
-    - _SegmentCount: 1
-    - _SegmentSpacing: 0.001
-    m_Colors:
-    - _BorderColor: {r: 2, g: 2, b: 2, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 0.27058825}
-    - _ContentNoiseOffset: {r: 0, g: 0, b: 0, a: 0}
-    - _EmptyColor: {r: 0.3584906, g: 0.3466536, b: 0.3466536, a: 1}
-    - _EmptyNoiseOffset: {r: 0, g: 0, b: 0, a: 0}
-    - _OverlayNoiseOffset: {r: 0, g: 0, b: 0, a: 0}
-    - _SecondColor: {r: 0.3962264, g: 0.1140085, b: 0.1140085, a: 1}
-    - _SpaceColor: {r: 0.990566, g: 0.546268, b: 0, a: 0}
-  m_BuildTextureStacks: []
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -718,6 +645,80 @@ MonoBehaviour:
   followX: 1
   followY: 0
   scale: 1
+--- !u!21 &547760635
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: radialSegmentedHealthBarInstance
+  m_Shader: {fileID: -6465566751694194690, guid: 754db91c7cf454b4a937cbe5f4a0a40b, type: 3}
+  m_ShaderKeywords: EMPTY_NOISE_ON ETC1_EXTERNAL_ALPHA PULSATE_WHEN_LOW_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - CONTENT_NOISE: 0
+    - EMPTY_NOISE: 1
+    - OVERLAY_NOISE: 0
+    - PULSATE_WHEN_LOW: 1
+    - Vector1_5F1B012: 59.6
+    - Vector1_ECC2C9F3: 5.5
+    - Vector1_F9D53FA9: 0
+    - _BorderSpacing: 0.02
+    - _BorderWidth: 0.02
+    - _ContentNoiseScale: 100
+    - _ContentNoiseStrength: 0.2
+    - _EmptyNoiseScale: 100
+    - _EmptyNoiseStrength: 0.5
+    - _LineWidth: 0.005
+    - _OverlayNoiseScale: 100
+    - _OverlayNoiseStrength: 0.5
+    - _PulseActivationThreshold: 0.5
+    - _PulseSpeed: 10
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _Radius: 0.4
+    - _RemoveBorder: 0.5
+    - _RemoveSegments: 0
+    - _Rotation: 330
+    - _SecondRemoveSegments: 0.5
+    - _SegmentCount: 1
+    - _SegmentSpacing: 0.001
+    m_Colors:
+    - _BorderColor: {r: 2, g: 2, b: 2, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 0.27058825}
+    - _ContentNoiseOffset: {r: 0, g: 0, b: 0, a: 0}
+    - _EmptyColor: {r: 0.3584906, g: 0.3466536, b: 0.3466536, a: 1}
+    - _EmptyNoiseOffset: {r: 0, g: 0, b: 0, a: 0}
+    - _OverlayNoiseOffset: {r: 0, g: 0, b: 0, a: 0}
+    - _SecondColor: {r: 0.3962264, g: 0.1140085, b: 0.1140085, a: 1}
+    - _SpaceColor: {r: 0.990566, g: 0.546268, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -881,7 +882,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 466957675}
+  - {fileID: 547760635}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1155,8 +1156,16 @@ MonoBehaviour:
   Camera: {fileID: 519420032}
   bufferRight: 10
   bufferLeft: 10
-  tilePrefab: {fileID: 5924937471420559597, guid: b09858dcf11d5d64da6d955d28fed123, type: 3}
+  tilePrefabs:
+  - {fileID: 5924937471420559597, guid: b09858dcf11d5d64da6d955d28fed123, type: 3}
   tileWidth: 19
+  tiles:
+  - {fileID: 1563279616}
+--- !u!1 &1101370074 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8322466151142467835, guid: bddf2610f7dc93f45bc07913bdeb8c14, type: 3}
+  m_PrefabInstance: {fileID: 9055881873547634012}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1131793516
 GameObject:
   m_ObjectHideFlags: 0
@@ -1329,8 +1338,10 @@ MonoBehaviour:
   Camera: {fileID: 519420032}
   bufferRight: 10
   bufferLeft: 10
-  tilePrefab: {fileID: 7949427124580689708, guid: b3e8404fdd187614ab6374697bbd7f41, type: 3}
-  tileWidth: 3
+  tilePrefabs:
+  - {fileID: 7949427124580689708, guid: b3e8404fdd187614ab6374697bbd7f41, type: 3}
+  tileWidth: 8
+  tiles: []
 --- !u!114 &1323070704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1346,7 +1357,7 @@ MonoBehaviour:
   followTarget: {fileID: 519420032}
   followX: 1
   followY: 0
-  scale: -0.15
+  scale: -0.25
 --- !u!1 &1335129086
 GameObject:
   m_ObjectHideFlags: 0
@@ -1469,6 +1480,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -201, y: 72}
   m_Pivot: {x: 0, y: 1}
+--- !u!1 &1563279616 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5924937471420559597, guid: b09858dcf11d5d64da6d955d28fed123, type: 3}
+  m_PrefabInstance: {fileID: 5924937471716597032}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1672250856
 GameObject:
   m_ObjectHideFlags: 0
@@ -1518,11 +1534,6 @@ MonoBehaviour:
   followX: 1
   followY: 1
   scale: 0.99
---- !u!4 &1714824230 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5459243578024483415, guid: 9a6d0b95687402644a4d2034179ce970, type: 3}
-  m_PrefabInstance: {fileID: 5459243578591903345}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1849404264
 GameObject:
   m_ObjectHideFlags: 0
@@ -1846,8 +1857,11 @@ MonoBehaviour:
   Camera: {fileID: 519420032}
   bufferRight: 10
   bufferLeft: 10
-  tilePrefab: {fileID: 8322466151142467835, guid: bddf2610f7dc93f45bc07913bdeb8c14, type: 3}
+  tilePrefabs:
+  - {fileID: 8322466151142467835, guid: bddf2610f7dc93f45bc07913bdeb8c14, type: 3}
   tileWidth: 20
+  tiles:
+  - {fileID: 1101370074}
 --- !u!114 &2094641784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1864,63 +1878,6 @@ MonoBehaviour:
   followX: 1
   followY: 0
   scale: 0.5
---- !u!1001 &5459243578591903345
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 207808280}
-    m_Modifications:
-    - target: {fileID: 5459243578024483412, guid: 9a6d0b95687402644a4d2034179ce970, type: 3}
-      propertyPath: m_Name
-      value: Grass
-      objectReference: {fileID: 0}
-    - target: {fileID: 5459243578024483415, guid: 9a6d0b95687402644a4d2034179ce970, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5459243578024483415, guid: 9a6d0b95687402644a4d2034179ce970, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 6.41
-      objectReference: {fileID: 0}
-    - target: {fileID: 5459243578024483415, guid: 9a6d0b95687402644a4d2034179ce970, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5459243578024483415, guid: 9a6d0b95687402644a4d2034179ce970, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5459243578024483415, guid: 9a6d0b95687402644a4d2034179ce970, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5459243578024483415, guid: 9a6d0b95687402644a4d2034179ce970, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5459243578024483415, guid: 9a6d0b95687402644a4d2034179ce970, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5459243578024483415, guid: 9a6d0b95687402644a4d2034179ce970, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5459243578024483415, guid: 9a6d0b95687402644a4d2034179ce970, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5459243578024483415, guid: 9a6d0b95687402644a4d2034179ce970, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5459243578024483415, guid: 9a6d0b95687402644a4d2034179ce970, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9a6d0b95687402644a4d2034179ce970, type: 3}
 --- !u!1001 &5924937471716597032
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1931,6 +1888,10 @@ PrefabInstance:
     - target: {fileID: 5924937471420559597, guid: b09858dcf11d5d64da6d955d28fed123, type: 3}
       propertyPath: m_Name
       value: HillsPiece
+      objectReference: {fileID: 0}
+    - target: {fileID: 5924937471420559597, guid: b09858dcf11d5d64da6d955d28fed123, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5924937471420559598, guid: b09858dcf11d5d64da6d955d28fed123, type: 3}
       propertyPath: m_RootOrder
@@ -2045,6 +2006,10 @@ PrefabInstance:
     - target: {fileID: 8322466151142467835, guid: bddf2610f7dc93f45bc07913bdeb8c14, type: 3}
       propertyPath: m_Name
       value: Trees_A
+      objectReference: {fileID: 0}
+    - target: {fileID: 8322466151142467835, guid: bddf2610f7dc93f45bc07913bdeb8c14, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8858301641750038596, guid: bddf2610f7dc93f45bc07913bdeb8c14, type: 3}
       propertyPath: m_RootOrder
