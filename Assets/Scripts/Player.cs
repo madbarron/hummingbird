@@ -43,8 +43,22 @@ public class Player : MonoBehaviour
             return;
         }
 
-        // If mouse is clicked
+        Vector2 clickLocation = Vector2.zero;
+        bool didClick = false;
+
         if (Input.GetMouseButton(0))
+        {
+            clickLocation = Input.mousePosition;
+            didClick = true;
+        }
+        else if (Input.touchCount > 0)
+        {
+            clickLocation = Input.GetTouch(0).position;
+            didClick = true;
+        }
+       
+        // If mouse is clicked
+        if (didClick)
         {
             if (!flapping)
             {
@@ -52,7 +66,7 @@ public class Player : MonoBehaviour
                 flapAnimator.SetTrigger("Down");
 
                 // Find relative direction and distance
-                Vector3 direction3 = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+                Vector3 direction3 = Camera.main.ScreenToWorldPoint(new Vector3(clickLocation.x, clickLocation.y)) - transform.position;
 
                 if (direction3.magnitude > maxPowerRadius)
                 {
