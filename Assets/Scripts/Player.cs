@@ -102,7 +102,6 @@ public class Player : MonoBehaviour
         {
             float drank = feeder.DrainEnergy(toDrink);
             health += drank;
-            Debug.Log(drank);
         }
     }
 }
