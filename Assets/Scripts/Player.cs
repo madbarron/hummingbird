@@ -104,6 +104,11 @@ public class Player : MonoBehaviour
 
     public void OnTriggerStay2D(Collider2D collision)
     {
+        if (health <= 0)
+        {
+            return;
+        }
+
         Feeder feeder = collision.gameObject.GetComponent<Feeder>();
 
         if (feeder == null)

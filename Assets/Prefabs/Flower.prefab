@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2037a579a51e4dd4892368907e8af852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxEnergy: 3
+  maxEnergy: 2.5
   energy: 0
 --- !u!58 &8792786658123783799
 CircleCollider2D:
