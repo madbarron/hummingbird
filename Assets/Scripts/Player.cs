@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     public float healthBarMult = 0.333f;
     public float healthPowerDrain = 0.1f;
 
+    public bool godMode;
+
     public float drinkRate = 0.5f;
 
     private bool flapping = false;
@@ -34,6 +36,13 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (godMode) health = 1;
+
+        if (health == 0)
+        {
+            return;
+        }
+
         // If mouse is clicked
         if (Input.GetMouseButton(0))
         {
@@ -69,8 +78,14 @@ public class Player : MonoBehaviour
 
         // Chip health
         health = Mathf.Clamp(health - healthChipRate * Time.deltaTime, 0, 1);
-
         healthBar.SetPercent(health * healthBarMult);
+
+        // Check die!
+        if (health == 0)
+        {
+            rigidbody2D.constraints = RigidbodyConstraints2D.None;
+            healthBar.gameObject.SetActive(false);
+        }
     }
 
     public void OnTriggerStay2D(Collider2D collision)
