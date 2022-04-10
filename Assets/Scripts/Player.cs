@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
 using RengeGames.HealthBars;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
@@ -23,6 +24,7 @@ public class Player : MonoBehaviour
     public bool godMode;
 
     public float drinkRate = 0.5f;
+    public UnityEvent onGameOver;    
 
     private bool flapping = false;
 
@@ -99,6 +101,7 @@ public class Player : MonoBehaviour
         {
             rigidbody2D.constraints = RigidbodyConstraints2D.None;
             healthBar.gameObject.SetActive(false);
+            onGameOver?.Invoke();
         }
     }
 
