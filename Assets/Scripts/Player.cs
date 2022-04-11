@@ -98,7 +98,7 @@ public class Player : MonoBehaviour
         birdRenderer.flipX = goingLeft;
 
         // Chip health
-        health = Mathf.Clamp(health - healthChipRate * Time.deltaTime, 0, 1);
+        health -= healthChipRate * Time.deltaTime;
         healthBar.SetPercent(health * healthBarMult);
     }
 
