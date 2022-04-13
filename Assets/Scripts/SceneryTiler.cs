@@ -54,7 +54,7 @@ public class SceneryTiler : MonoBehaviour
         // Check to see if we need more tiles left
         while (leftMost > cameraPos - bufferLeft)
         {
-            tile = Instantiate(randomPrefab, transform);
+            tile = Instantiate(getNewTile(tiles[0]), transform);
             tile.transform.position = new Vector3(leftMost - tileWidth, transform.position.y);
             leftMost = tile.transform.position.x;
             tiles.Insert(0, tile);
@@ -70,17 +70,33 @@ public class SceneryTiler : MonoBehaviour
             tiles.RemoveAt(lastTile);
             lastTile--;
             rightMost = tiles[lastTile].transform.position.x;
-
         }
 
         // Check if we need more tiles right
         if (rightMost < cameraPos + bufferRight)
         {
-            tile = Instantiate(randomPrefab, transform);
+            tile = Instantiate(getNewTile(tiles[lastTile]), transform);
             tile.transform.position = new Vector3(rightMost + tileWidth, transform.position.y);
             rightMost = tile.transform.position.x;
             tiles.Add(tile);
         }
+    }
+
+    /// <summary>
+    /// Get a new tile that is guaranteed to be different from the old tile, if more than one tile are in the pool
+    /// </summary>
+    /// <param name="oldTile"></param>
+    /// <returns></returns>
+    protected GameObject getNewTile(GameObject oldTile)
+    {
+        GameObject nextPrefab = randomPrefab;
+
+        while (tilePrefabs.Count > 1 && (oldTile.name == nextPrefab.name || oldTile.name == nextPrefab.name + "(Clone)"))
+        {
+            nextPrefab = randomPrefab;
+        }
+
+        return nextPrefab;
     }
 
     protected GameObject randomPrefab
@@ -88,6 +104,7 @@ public class SceneryTiler : MonoBehaviour
         get
         {
             int index = (int)(tilePrefabs.Count * Random.value);
+
             return tilePrefabs[index];
         }
     }
