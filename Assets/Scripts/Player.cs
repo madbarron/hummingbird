@@ -11,6 +11,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject bird;
 
+    [SerializeField]
+    private GameObject beak;
+
     private Rigidbody2D rigidbody2D;
     public float maxPower;
     public float maxPowerRadius;
@@ -96,16 +99,24 @@ public class Player : MonoBehaviour
             flapAnimator.SetTrigger("Up");
         }
 
-        // Point sprite in direction of travel
-        bool goingLeft = rigidbody2D.velocity.x < 0;
-        if (goingLeft)
+        // Point sprite in direction of travel, kinda
+        Vector3 travel = new Vector3(-rigidbody2D.velocity.x, Mathf.Abs(rigidbody2D.velocity.y) + 2);
+        bird.transform.rotation = Quaternion.LookRotation(Vector3.forward, travel);
+
+        // Flip left/right
+        Vector3 scale = bird.transform.localScale;
+        if (rigidbody2D.velocity.x < 0)
         {
-            bird.transform.localScale = new Vector3(Mathf.Abs(bird.transform.localScale.x) * -1, bird.transform.localScale.y, bird.transform.localScale.z);
+            scale = new Vector3(Mathf.Abs(scale.x) * -1, scale.y, scale.z);
+            beak.transform.rotation = Quaternion.LookRotation(Vector3.forward, Vector3.left);
+
         }
         else
         {
-            bird.transform.localScale = new Vector3(Mathf.Abs(bird.transform.localScale.x), bird.transform.localScale.y, bird.transform.localScale.z);
+            scale = new Vector3(Mathf.Abs(scale.x), scale.y, scale.z);
+            beak.transform.rotation = Quaternion.LookRotation(Vector3.forward, Vector3.right);
         }
+        bird.transform.localScale = scale;
 
         // Chip health
         health -= healthChipRate * Time.deltaTime;
