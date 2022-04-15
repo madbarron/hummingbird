@@ -8,6 +8,9 @@ using TMPro;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject bird;
+
     private Rigidbody2D rigidbody2D;
     public float maxPower;
     public float maxPowerRadius;
@@ -95,7 +98,14 @@ public class Player : MonoBehaviour
 
         // Point sprite in direction of travel
         bool goingLeft = rigidbody2D.velocity.x < 0;
-        birdRenderer.flipX = goingLeft;
+        if (goingLeft)
+        {
+            bird.transform.localScale = new Vector3(Mathf.Abs(bird.transform.localScale.x) * -1, bird.transform.localScale.y, bird.transform.localScale.z);
+        }
+        else
+        {
+            bird.transform.localScale = new Vector3(Mathf.Abs(bird.transform.localScale.x), bird.transform.localScale.y, bird.transform.localScale.z);
+        }
 
         // Chip health
         health -= healthChipRate * Time.deltaTime;
