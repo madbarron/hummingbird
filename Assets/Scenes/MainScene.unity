@@ -271,6 +271,84 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Scene: MainScene
+--- !u!21 &31460168
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: radialSegmentedHealthBarInstance
+  m_Shader: {fileID: -6465566751694194690, guid: 754db91c7cf454b4a937cbe5f4a0a40b, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - EMPTY_NOISE_ON
+  - ETC1_EXTERNAL_ALPHA
+  - PULSATE_WHEN_LOW_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - CONTENT_NOISE: 0
+    - EMPTY_NOISE: 1
+    - OVERLAY_NOISE: 0
+    - PULSATE_WHEN_LOW: 1
+    - Vector1_5F1B012: 59.6
+    - Vector1_ECC2C9F3: 5.5
+    - Vector1_F9D53FA9: 0
+    - _BorderSpacing: 0.02
+    - _BorderWidth: 0.02
+    - _ContentNoiseScale: 100
+    - _ContentNoiseStrength: 0.2
+    - _EmptyNoiseScale: 100
+    - _EmptyNoiseStrength: 0.5
+    - _LineWidth: 0.005
+    - _OverlayNoiseScale: 100
+    - _OverlayNoiseStrength: 0.5
+    - _PulseActivationThreshold: 0.5
+    - _PulseSpeed: 10
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _Radius: 0.4
+    - _RemoveBorder: 0.5
+    - _RemoveSegments: 0
+    - _Rotation: 330
+    - _SecondRemoveSegments: 0.5
+    - _SegmentCount: 1
+    - _SegmentSpacing: 0.001
+    m_Colors:
+    - _BorderColor: {r: 2, g: 2, b: 2, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 0.27058825}
+    - _ContentNoiseOffset: {r: 0, g: 0, b: 0, a: 0}
+    - _EmptyColor: {r: 0.3584906, g: 0.3466536, b: 0.3466536, a: 1}
+    - _EmptyNoiseOffset: {r: 0, g: 0, b: 0, a: 0}
+    - _OverlayNoiseOffset: {r: 0, g: 0, b: 0, a: 0}
+    - _SecondColor: {r: 0.3962264, g: 0.1140085, b: 0.1140085, a: 1}
+    - _SpaceColor: {r: 0.990566, g: 0.546268, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1 &49497168
 GameObject:
   m_ObjectHideFlags: 0
@@ -891,7 +969,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000e9e377160765cf82fb25d108ef2d96d8573b64e6
+  m_ApplyToSortingLayers: 00000000e9e377160765cf82fb25d108ef2d96d8573b64e6cffe4a11
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -1022,84 +1100,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &709520285
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: radialSegmentedHealthBarInstance
-  m_Shader: {fileID: -6465566751694194690, guid: 754db91c7cf454b4a937cbe5f4a0a40b, type: 3}
-  m_ValidKeywords: []
-  m_InvalidKeywords:
-  - EMPTY_NOISE_ON
-  - ETC1_EXTERNAL_ALPHA
-  - PULSATE_WHEN_LOW_ON
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_Lightmaps:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_LightmapsInd:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_ShadowMasks:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - CONTENT_NOISE: 0
-    - EMPTY_NOISE: 1
-    - OVERLAY_NOISE: 0
-    - PULSATE_WHEN_LOW: 1
-    - Vector1_5F1B012: 59.6
-    - Vector1_ECC2C9F3: 5.5
-    - Vector1_F9D53FA9: 0
-    - _BorderSpacing: 0.02
-    - _BorderWidth: 0.02
-    - _ContentNoiseScale: 100
-    - _ContentNoiseStrength: 0.2
-    - _EmptyNoiseScale: 100
-    - _EmptyNoiseStrength: 0.5
-    - _LineWidth: 0.005
-    - _OverlayNoiseScale: 100
-    - _OverlayNoiseStrength: 0.5
-    - _PulseActivationThreshold: 0.5
-    - _PulseSpeed: 10
-    - _QueueControl: 0
-    - _QueueOffset: 0
-    - _Radius: 0.4
-    - _RemoveBorder: 0.5
-    - _RemoveSegments: 0
-    - _Rotation: 330
-    - _SecondRemoveSegments: 0.5
-    - _SegmentCount: 1
-    - _SegmentSpacing: 0.001
-    m_Colors:
-    - _BorderColor: {r: 2, g: 2, b: 2, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 0.27058825}
-    - _ContentNoiseOffset: {r: 0, g: 0, b: 0, a: 0}
-    - _EmptyColor: {r: 0.3584906, g: 0.3466536, b: 0.3466536, a: 1}
-    - _EmptyNoiseOffset: {r: 0, g: 0, b: 0, a: 0}
-    - _OverlayNoiseOffset: {r: 0, g: 0, b: 0, a: 0}
-    - _SecondColor: {r: 0.3962264, g: 0.1140085, b: 0.1140085, a: 1}
-    - _SpaceColor: {r: 0.990566, g: 0.546268, b: 0, a: 0}
-  m_BuildTextureStacks: []
 --- !u!1 &735103029
 GameObject:
   m_ObjectHideFlags: 0
@@ -1153,7 +1153,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 709520285}
+  - {fileID: 31460168}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1172,7 +1172,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 676532081
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 66b369c9e75e56c41bfcbf7596bfe102, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1656,7 +1656,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -661246481
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 11
   m_Sprite: {fileID: 21300000, guid: cc0b3fe016edddf44b2f9527cef4c398, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1773,7 +1773,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 676532081
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2551,7 +2551,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -661246481
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 84bfe519ce3280c49bc0666bddb879b9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2782,7 +2782,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -661246481
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 9
   m_Sprite: {fileID: 21300000, guid: 0f137ce6ac9cc464f9a6866e52f46ace, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3281,17 +3281,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2094641782}
     m_Modifications:
-    - target: {fileID: 7207231118896438799, guid: bddf2610f7dc93f45bc07913bdeb8c14, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8322466151142467835, guid: bddf2610f7dc93f45bc07913bdeb8c14, type: 3}
       propertyPath: m_Name
       value: Trees_A
-      objectReference: {fileID: 0}
-    - target: {fileID: 8322466151142467835, guid: bddf2610f7dc93f45bc07913bdeb8c14, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8858301641750038596, guid: bddf2610f7dc93f45bc07913bdeb8c14, type: 3}
       propertyPath: m_RootOrder

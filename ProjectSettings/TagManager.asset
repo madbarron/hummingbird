@@ -50,6 +50,9 @@ TagManager:
   - name: Hills
     uniqueID: 147924475
     locked: 0
+  - name: Trees
+    uniqueID: 290127567
+    locked: 0
   - name: Game
     uniqueID: 3633720815
     locked: 0
