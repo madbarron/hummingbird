@@ -2,28 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Eatable : MonoBehaviour
+public class Eatable : MonoBehaviour, ITasty
 {
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    Player other = collision.GetComponent<Player>();
+    public bool IsTasty()
+    {
+        return true;
+    }
 
-    //    if (other != null)
-    //    {
-    //        other.Eat();
-    //        Destroy(gameObject);
-    //    }
-    //}
+    public Vector3 GetPosition()
+    {
+        return transform.position;
+    }
 }

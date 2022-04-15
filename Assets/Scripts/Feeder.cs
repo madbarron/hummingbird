@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Feeder : MonoBehaviour
+public class Feeder : MonoBehaviour, ITasty
 {
     public float maxEnergy = 1;
     public float energy;
@@ -34,4 +34,15 @@ public class Feeder : MonoBehaviour
         GetComponent<Animator>().Play("Drain", 0, 1 - (energy / maxEnergy));
         return delivered;
     }
+
+    bool ITasty.IsTasty()
+    {
+        return energy > 0;
+    }
+
+    Vector3 ITasty.GetPosition()
+    {
+        return transform.position;
+    }
+
 }

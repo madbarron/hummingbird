@@ -8,33 +8,42 @@ using TMPro;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
+    private Rigidbody2D rigidbody2D;
+
+    [Header("Connections")]
     [SerializeField]
     private GameObject bird;
 
     [SerializeField]
     private GameObject neck;
 
-    private Rigidbody2D rigidbody2D;
-    public float maxPower;
-    public float maxPowerRadius;
     public Animator flapAnimator;
     public SpriteRenderer birdRenderer;
     public UltimateCircularHealthBar healthBar;
+    public TextMeshProUGUI scoreText;
 
+    [Header("Mobility")]
+    public float maxPower;
+    public float maxPowerRadius;
+    public float neckSwivelRate;
+
+    [Header("Health")]
+    public bool godMode;
     public float health = 1f;
     public float healthChipRate = 0.1f;
     public float healthBarMult = 0.333f;
     public float healthPowerDrain = 0.1f;
-
-    public bool godMode;
-
     public float drinkRate = 0.5f;
+
     public UnityEvent onGameOver;
-    public TextMeshProUGUI scoreText;
 
     private bool flapping = false;
     private bool dead = false;
     private int score = 0;
+
+    private ITasty closestEdible;
+
+    public ITasty ClosestEdible { set { closestEdible = value; } }
 
     // Start is called before the first frame update
     void Start()
@@ -105,16 +114,27 @@ public class Player : MonoBehaviour
 
         // Flip left/right
         Vector3 scale = bird.transform.localScale;
-        if (rigidbody2D.velocity.x < 0)
+
+        Vector3 target = rigidbody2D.velocity.x > 0 ? Vector3.right : Vector3.left;
+
+        if (closestEdible != null)
+        {
+            target = closestEdible.GetPosition() - transform.position;
+        }
+
+        neck.transform.rotation = Quaternion.RotateTowards(
+            neck.transform.rotation,
+            Quaternion.LookRotation(Vector3.forward, target),
+            Time.deltaTime * neckSwivelRate);
+
+        if (target.x < 0)
         {
             scale = new Vector3(Mathf.Abs(scale.x) * -1, scale.y, scale.z);
-            neck.transform.rotation = Quaternion.LookRotation(Vector3.forward, Vector3.left);
-
         }
         else
         {
             scale = new Vector3(Mathf.Abs(scale.x), scale.y, scale.z);
-            neck.transform.rotation = Quaternion.LookRotation(Vector3.forward, Vector3.right);
+            //neck.transform.rotation = Quaternion.LookRotation(Vector3.forward, Vector3.right);
         }
         bird.transform.localScale = scale;
 
@@ -131,8 +151,6 @@ public class Player : MonoBehaviour
         {
             return;
         }
-
-
     }
 
     // Don't die until you run into something
@@ -162,6 +180,9 @@ public class Player : MonoBehaviour
         }
         score++;
         scoreText.text = score.ToString();
+
+        // Avoid destroyed object reference with this little bit of spaghetti
+        closestEdible = null;
     }
 
     protected void Die()
