@@ -12,9 +12,31 @@ public class Smeller : MonoBehaviour
 
     public void Update()
     {
-        if (targets.Count > 0)
+        float closest = float.PositiveInfinity;
+        float distance;
+        ITasty closestItem = null;
+
+        // Remove any item which is no longer tasty
+        foreach(ITasty dead in targets.FindAll(delegate (ITasty item) { return !item.IsTasty(); }))
         {
-            player.ClosestEdible = targets[0];
+            targets.Remove(dead);
+        }
+
+        // Find closest item that is still tasty
+        foreach (ITasty item in targets)
+        {
+            distance = (player.transform.position - item.GetPosition()).magnitude;
+            if (distance < closest)
+            {
+                closest = distance;
+                closestItem = item;
+            }
+        }
+
+        // Deliver smell report to brain
+        if (closestItem != null)
+        {
+            player.ClosestEdible = closestItem;
         }
         else
         {
