@@ -16,14 +16,14 @@ public class Eatable : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Player other = collision.GetComponent<Player>();
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    Player other = collision.GetComponent<Player>();
 
-        if (other != null)
-        {
-            other.Eat();
-            Destroy(gameObject);
-        }
-    }
+    //    if (other != null)
+    //    {
+    //        other.Eat();
+    //        Destroy(gameObject);
+    //    }
+    //}
 }

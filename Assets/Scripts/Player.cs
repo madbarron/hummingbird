@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     private GameObject bird;
 
     [SerializeField]
-    private GameObject beak;
+    private GameObject neck;
 
     private Rigidbody2D rigidbody2D;
     public float maxPower;
@@ -108,13 +108,13 @@ public class Player : MonoBehaviour
         if (rigidbody2D.velocity.x < 0)
         {
             scale = new Vector3(Mathf.Abs(scale.x) * -1, scale.y, scale.z);
-            beak.transform.rotation = Quaternion.LookRotation(Vector3.forward, Vector3.left);
+            neck.transform.rotation = Quaternion.LookRotation(Vector3.forward, Vector3.left);
 
         }
         else
         {
             scale = new Vector3(Mathf.Abs(scale.x), scale.y, scale.z);
-            beak.transform.rotation = Quaternion.LookRotation(Vector3.forward, Vector3.right);
+            neck.transform.rotation = Quaternion.LookRotation(Vector3.forward, Vector3.right);
         }
         bird.transform.localScale = scale;
 
@@ -132,12 +132,7 @@ public class Player : MonoBehaviour
             return;
         }
 
-        float toDrink = Mathf.Clamp(1 - health, 0, drinkRate * Time.deltaTime);
-        if (toDrink > 0)
-        {
-            float drank = feeder.DrainEnergy(toDrink);
-            health += drank;
-        }
+
     }
 
     // Don't die until you run into something
@@ -146,6 +141,16 @@ public class Player : MonoBehaviour
         if (health <= 0 && !flapping)
         {
             Die();
+        }
+    }
+
+    public void FeederAvailable(Feeder feeder)
+    {
+        float toDrink = Mathf.Clamp(1 - health, 0, drinkRate * Time.deltaTime);
+        if (toDrink > 0)
+        {
+            float drank = feeder.DrainEnergy(toDrink);
+            health += drank;
         }
     }
 
