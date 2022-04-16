@@ -7,10 +7,12 @@ public class Feeder : MonoBehaviour, ITasty
 {
     public float maxEnergy = 1;
     public float energy;
+    private DifficultyManager difficulty;
 
     // Start is called before the first frame update
     void Start()
     {
+        difficulty = FindObjectOfType<DifficultyManager>();
         energy = maxEnergy;
         GetComponent<Animator>().speed = 0;
     }
@@ -45,4 +47,9 @@ public class Feeder : MonoBehaviour, ITasty
         return transform.position;
     }
 
+    public void OnGameStart()
+    {
+        maxEnergy = difficulty.Settings.flowerCapacity;
+        energy = maxEnergy;
+    }
 }

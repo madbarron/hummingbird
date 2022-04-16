@@ -39,7 +39,10 @@ public class Player : MonoBehaviour
     public float healthPowerDrain = 0.1f;
     public float drinkRate = 0.5f;
 
+    [Header("Events")]
     public UnityEvent onGameOver;
+    public UnityEvent onGameStart;    // Triggered when the game begins
+    public GameEvent gameStartEvent;  // Triggered when the game begins
 
     private bool flapping = false;
     private bool dead = false;
@@ -51,10 +54,13 @@ public class Player : MonoBehaviour
 
     public ITasty ClosestEdible { set { closestEdible = value; } }
 
+    private DifficultyManager difficulty;
+
     // Start is called before the first frame update
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
+        difficulty = FindObjectOfType<DifficultyManager>();
 
         // Sleep until the game begins
         rigidbody2D.sleepMode = RigidbodySleepMode2D.StartAsleep;
@@ -69,7 +75,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (godMode) health = 1;
+        if (godMode) health = 0.5f;
 
         if (dead || !gameInProgress)
         {
@@ -203,12 +209,25 @@ public class Player : MonoBehaviour
 
     public void StartGame()
     {
+        DifficultySettings settings = difficulty.Settings;
+
+        // Apply settings
+        godMode = difficulty.Settings.godMode;
+        drinkRate = difficulty.Settings.drinkRate;
+        healthPowerDrain = difficulty.Settings.healthPowerDrain;
+        massGainPerScore = difficulty.Settings.massGainPerScore;
+
+        // Begin game
         gameInProgress = true;
         rigidbody2D.sleepMode = RigidbodySleepMode2D.NeverSleep;
         rigidbody2D.WakeUp();
         flapAnimator.speed = 1;
         Time.timeScale = 1;
         updateHealthBar();
+        healthBar.gameObject.SetActive(!godMode);
+
+        onGameStart?.Invoke();
+        gameStartEvent.Raise();
     }
 
     public void Eat()
