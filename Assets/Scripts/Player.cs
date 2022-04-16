@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     public float maxPower;
     public float maxPowerRadius;
     public float pitchRate;
+    public float massGainPerScore;
 
     [Header("Health")]
     public bool godMode;
@@ -218,6 +219,9 @@ public class Player : MonoBehaviour
         }
         score++;
         scoreText.text = score.ToString();
+
+        // Gains
+        rigidbody2D.mass += massGainPerScore;
 
         // Avoid destroyed object reference with this little bit of spaghetti
         closestEdible = null;

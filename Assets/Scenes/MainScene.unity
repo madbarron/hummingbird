@@ -2926,12 +2926,13 @@ MonoBehaviour:
   maxPower: 26
   maxPowerRadius: 4
   pitchRate: 2
+  massGainPerScore: 0.025
   godMode: 0
   health: 1
   healthChipRate: 0.05
   healthBarMult: 0.333
   healthPowerDrain: 0.2
-  drinkRate: 0.8
+  drinkRate: 0.65
   onGameOver:
     m_PersistentCalls:
       m_Calls:
@@ -3031,7 +3032,7 @@ MonoBehaviour:
   - {fileID: 8458072373815273873, guid: 62c1fd8b4e4f13e4887a4be6f0d9d629, type: 3}
   - {fileID: 8036821911312511360, guid: c84533586ce201d4fb8802389f14e809, type: 3}
   - {fileID: 5724257933848171837, guid: 3d6bca016646b104fbdabdf18ddc0620, type: 3}
-  tileWidth: 8
+  tileWidth: 10
   tiles:
   - {fileID: 1607995534}
   - {fileID: 785302960}
