@@ -20,6 +20,26 @@ public class Beak : MonoBehaviour
         
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Feeder feeder = collision.GetComponent<Feeder>();
+
+        if (feeder && feeder.IsTasty())
+        {
+            player.BeginDrinking(feeder);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        Feeder feeder = collision.GetComponent<Feeder>();
+
+        if (feeder)
+        {
+            player.EndDrinking();
+        }
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         Eatable eatable = collision.GetComponent<Eatable>();
@@ -31,7 +51,7 @@ public class Beak : MonoBehaviour
         }
 
         Feeder feeder = collision.GetComponent<Feeder>();
-        if (feeder)
+        if (feeder && feeder.IsTasty())
         {
             player.FeederAvailable(feeder);
         }

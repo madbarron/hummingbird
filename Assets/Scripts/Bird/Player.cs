@@ -6,6 +6,7 @@ using UnityEngine.Events;
 using TMPro;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(AudioSource))]
 public class Player : MonoBehaviour
 {
     private Rigidbody2D rigidbody2D;
@@ -20,10 +21,17 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject reflectionTransform;
 
+
     public Animator flapAnimator;
     public SpriteRenderer birdRenderer;
     public UltimateCircularHealthBar healthBar;
     public TextMeshProUGUI scoreText;
+
+    [Header("Sound Effects")]
+    public AudioSource eatSource;
+    public AudioSource collideSource;
+    public AudioSource wingBeatSource;
+    public AudioSource drinkAudioSource;
 
     [Header("Mobility")]
     public float maxPower;
@@ -104,6 +112,8 @@ public class Player : MonoBehaviour
                 flapping = true;
                 flapAnimator.SetTrigger("Down");
 
+                wingBeatSource.Play();
+
                 // Find relative direction and distance
                 Vector3 direction3 = Camera.main.ScreenToWorldPoint(new Vector3(clickLocation.x, clickLocation.y)) - transform.position;
 
@@ -178,15 +188,18 @@ public class Player : MonoBehaviour
         reflectionTransform.transform.localScale = scale;
     }
 
-    public void OnTriggerStay2D(Collider2D collision)
+    public void BeginDrinking(Feeder feeder)
     {
-        Feeder feeder = collision.gameObject.GetComponent<Feeder>();
-
-        if (feeder == null)
-        {
-            return;
-        }
+        float progress = 1 - (feeder.energy / feeder.maxEnergy);
+        drinkAudioSource.time = drinkAudioSource.clip.length * Mathf.Clamp(progress, 0, 0.99f);
+        drinkAudioSource.Play();
     }
+
+    public void EndDrinking()
+    {
+        drinkAudioSource.Stop();
+    }
+
 
     // Don't die until you run into something
     public void OnCollisionStay2D(Collision2D collision)
@@ -195,6 +208,11 @@ public class Player : MonoBehaviour
         {
             Die();
         }
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        collideSource.Play();
     }
 
     public void FeederAvailable(Feeder feeder)
@@ -244,6 +262,8 @@ public class Player : MonoBehaviour
 
         // Avoid destroyed object reference with this little bit of spaghetti
         closestEdible = null;
+
+        eatSource.Play();
     }
 
     protected void Die()

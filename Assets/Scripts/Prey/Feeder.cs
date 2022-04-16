@@ -38,12 +38,12 @@ public class Feeder : MonoBehaviour, ITasty
         return delivered;
     }
 
-    bool ITasty.IsTasty()
+    public bool IsTasty()
     {
         return energy > 0;
     }
 
-    Vector3 ITasty.GetPosition()
+    public Vector3 GetPosition()
     {
         return transform.position;
     }
@@ -55,10 +55,7 @@ public class Feeder : MonoBehaviour, ITasty
         {
             normalizedEnergy = 1 - normalizedEnergy;
         }
-            Debug.Log(energy.ToString() + ' ' + maxEnergy.ToString() + ' ' + normalizedEnergy.ToString());
         GetComponent<Animator>().Play("Drain", 0, normalizedEnergy);
-        //GetComponent<Animator>().Play("Drain", 0, 0.99f);
-
     }
 
     public void OnGameStart()
