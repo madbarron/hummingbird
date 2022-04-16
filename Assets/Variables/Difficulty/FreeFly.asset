@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: FreeFly
   m_EditorClassIdentifier: 
   godMode: 1
+  pollinatorMode: 1
   drinkRate: 0.8
-  flowerCapacity: 5
+  flowerCapacity: 3.5
   healthPowerDrain: 0
   massGainPerScore: 0

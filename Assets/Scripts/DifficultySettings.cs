@@ -6,6 +6,7 @@ using UnityEngine;
 public class DifficultySettings : ScriptableObject
 {
     public bool godMode;
+    public bool pollinatorMode;
 
     public float drinkRate;
     public float flowerCapacity;
