@@ -21,7 +21,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject reflectionTransform;
 
-
     public Animator flapAnimator;
     public SpriteRenderer birdRenderer;
     public UltimateCircularHealthBar healthBar;
@@ -29,6 +28,7 @@ public class Player : MonoBehaviour
 
     [Header("Sound Effects")]
     public AudioSource gameMusicSource;
+    public AudioSource gameOverMusicSource;
     public AudioSource eatSource;
     public AudioSource collideSource;
     public AudioSource wingBeatSource;
@@ -278,6 +278,7 @@ public class Player : MonoBehaviour
             healthBar.gameObject.SetActive(false);
             flapAnimator.speed = 0;
             gameMusicSource.Stop();
+            gameOverMusicSource.Play();
         }
     }
 }

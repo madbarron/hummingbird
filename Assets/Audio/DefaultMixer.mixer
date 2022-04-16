@@ -19,6 +19,20 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!244 &-8842648185507195657
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 4cf9a93654eff9e40bb16710af71d005
+  m_EffectName: Attenuation
+  m_MixLevel: 8dfa0bbca7014774a8cc0e3a478a3de8
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!243 &-8691863176438006136
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -321,6 +335,7 @@ AudioMixerController:
     - ad21fe89175378a468c7a3a1d29eb336
     - 6a3286a71dcac8446a825f33af003bab
     - 73a506e04c8c7d74eb6c7bc7e984ba51
+    - a9b1e8c9008011b498841d216673f5f0
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -337,6 +352,7 @@ AudioMixerGroupController:
   - {fileID: -3514257711561568950}
   - {fileID: -5680703994931999674}
   - {fileID: -1944215835604179663}
+  - {fileID: 459804377739411150}
   m_Volume: 205c473a3839ecd4e9200923c04a1091
   m_Pitch: 089cd26420922224d98f83e40329966f
   m_Send: 00000000000000000000000000000000
@@ -373,10 +389,31 @@ AudioMixerSnapshotController:
     e7eede01c00daf7448db93d1be553a3b: 3.7041535
     1a72faa152ca46e478060409d38c0043: -0.08374829
     5671ac854a46e6948b1f09e3423546d4: 4.648098
+    ecce9c3786ff4d141b6ff49a8ab1bfe3: 1.4306194
     c9f5df790901e9b4ba6739e6f6706d7e: -9.332112
     8f2801a9cffd2ee43b251f28c3951f43: -11.944499
-    205c473a3839ecd4e9200923c04a1091: -12.498478
+    f5a6fd2a27236424eb5b7d52d3983234: -4.560346
+    205c473a3839ecd4e9200923c04a1091: -9.833286
   m_TransitionOverrides: {}
+--- !u!243 &459804377739411150
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Ambience
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: a9b1e8c9008011b498841d216673f5f0
+  m_Children: []
+  m_Volume: 0659212a053bd3245a2299b252dc987d
+  m_Pitch: 53a6f08e1d987a34796701083d35ec0d
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -8842648185507195657}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!244 &2739098761985674470
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
