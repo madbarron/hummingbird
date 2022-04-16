@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
     public TextMeshProUGUI scoreText;
 
     [Header("Sound Effects")]
+    public AudioSource gameMusicSource;
     public AudioSource eatSource;
     public AudioSource collideSource;
     public AudioSource wingBeatSource;
@@ -107,7 +108,7 @@ public class Player : MonoBehaviour
         // If mouse is clicked
         if (didClick)
         {
-            if (!flapping)
+            if (!flapping && health > 0)
             {
                 flapping = true;
                 flapAnimator.SetTrigger("Down");
@@ -243,6 +244,7 @@ public class Player : MonoBehaviour
         Time.timeScale = 1;
         updateHealthBar();
         healthBar.gameObject.SetActive(!godMode);
+        gameMusicSource.Play();
 
         onGameStart?.Invoke();
         gameStartEvent.Raise();
@@ -275,6 +277,7 @@ public class Player : MonoBehaviour
             rigidbody2D.constraints = RigidbodyConstraints2D.None;
             healthBar.gameObject.SetActive(false);
             flapAnimator.speed = 0;
+            gameMusicSource.Stop();
         }
     }
 }
