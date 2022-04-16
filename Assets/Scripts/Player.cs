@@ -17,6 +17,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject neck;
 
+    [SerializeField]
+    private GameObject reflectionTransform;
+
     public Animator flapAnimator;
     public SpriteRenderer birdRenderer;
     public UltimateCircularHealthBar healthBar;
@@ -25,7 +28,7 @@ public class Player : MonoBehaviour
     [Header("Mobility")]
     public float maxPower;
     public float maxPowerRadius;
-    public float neckSwivelRate;
+    public float pitchRate;
 
     [Header("Health")]
     public bool godMode;
@@ -40,6 +43,7 @@ public class Player : MonoBehaviour
     private bool flapping = false;
     private bool dead = false;
     private int score = 0;
+    private float prevRotation = 0.5f;
 
     private ITasty closestEdible;
 
@@ -108,13 +112,17 @@ public class Player : MonoBehaviour
             flapAnimator.SetTrigger("Up");
         }
 
-        // Point sprite in direction of travel, kinda
-        Vector3 travel = new Vector3(-rigidbody2D.velocity.x, Mathf.Abs(rigidbody2D.velocity.y) + 2);
-        bird.transform.rotation = Quaternion.LookRotation(Vector3.forward, travel);
+        // Chip health
+        health -= healthChipRate * Time.deltaTime;
+        healthBar.SetPercent(health * healthBarMult);
 
-        // Flip left/right
-        Vector3 scale = bird.transform.localScale;
+        updateFacing();
+    }
 
+    // Point beak/body in direction of nearest tasty
+    protected void updateFacing()
+    {
+        // Find where we want the beak to point
         Vector3 target = rigidbody2D.velocity.x > 0 ? Vector3.right : Vector3.left;
 
         if (closestEdible != null)
@@ -122,11 +130,20 @@ public class Player : MonoBehaviour
             target = closestEdible.GetPosition() - transform.position;
         }
 
-        neck.transform.rotation = Quaternion.RotateTowards(
-            neck.transform.rotation,
-            Quaternion.LookRotation(Vector3.forward, target),
-            Time.deltaTime * neckSwivelRate);
+        // Find the angle that would point us to the target
+        Quaternion targetQuaternion = Quaternion.LookRotation(Vector3.forward, target);
+        float rotation = targetQuaternion.eulerAngles.z;
 
+        // Push us towards the target at the speed of pitchRate
+        float animationTime = Mathf.Abs(rotation - 180) / 180;
+        float time = Mathf.MoveTowards(prevRotation, animationTime, pitchRate * Time.deltaTime);
+
+        // Use animation to set us in the right rotation
+        flapAnimator.Play("Pitch", -1, time);
+        prevRotation = time;
+
+        // Flip left/right
+        Vector3 scale = reflectionTransform.transform.localScale;
         if (target.x < 0)
         {
             scale = new Vector3(Mathf.Abs(scale.x) * -1, scale.y, scale.z);
@@ -134,13 +151,8 @@ public class Player : MonoBehaviour
         else
         {
             scale = new Vector3(Mathf.Abs(scale.x), scale.y, scale.z);
-            //neck.transform.rotation = Quaternion.LookRotation(Vector3.forward, Vector3.right);
         }
-        bird.transform.localScale = scale;
-
-        // Chip health
-        health -= healthChipRate * Time.deltaTime;
-        healthBar.SetPercent(health * healthBarMult);
+        reflectionTransform.transform.localScale = scale;
     }
 
     public void OnTriggerStay2D(Collider2D collision)
