@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Hard
   m_EditorClassIdentifier: 
   godMode: 0
-  drinkRate: 0.65
+  pollinatorMode: 0
+  drinkRate: 0.55
   flowerCapacity: 3
-  healthPowerDrain: 0.3
-  massGainPerScore: 0.075
+  healthPowerDrain: 0.2
+  healthChipRate: 0.05
+  massGainPerScore: 0.05
+  maxPower: 30

@@ -43,10 +43,10 @@ public class Player : MonoBehaviour
     [Header("Health")]
     public bool godMode;
     public float health = 1f;
-    public float healthChipRate = 0.1f;
     public float healthBarMult = 0.333f;
-    public float healthPowerDrain = 0.1f;
-    public float drinkRate = 0.5f;
+    private float healthChipRate = 0.1f;
+    private float healthPowerDrain = 0.1f;
+    private float drinkRate = 0.5f;
 
     [Header("Events")]
     public UnityEvent onGameOver;
@@ -235,6 +235,8 @@ public class Player : MonoBehaviour
         drinkRate = difficulty.Settings.drinkRate;
         healthPowerDrain = difficulty.Settings.healthPowerDrain;
         massGainPerScore = difficulty.Settings.massGainPerScore;
+        healthChipRate = difficulty.Settings.healthChipRate;
+        maxPower = difficulty.Settings.maxPower;
 
         // Begin game
         gameInProgress = true;

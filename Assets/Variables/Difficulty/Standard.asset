@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Standard
   m_EditorClassIdentifier: 
   godMode: 0
-  drinkRate: 0.8
-  flowerCapacity: 2.5
-  healthPowerDrain: 0.2
-  massGainPerScore: 0.025
+  pollinatorMode: 0
+  drinkRate: 1
+  flowerCapacity: 2
+  healthPowerDrain: 0.1
+  healthChipRate: 0
+  massGainPerScore: 0
+  maxPower: 20

@@ -11,6 +11,12 @@ public class DifficultySettings : ScriptableObject
     public float drinkRate;
     public float flowerCapacity;
     public float healthPowerDrain;
+    public float healthChipRate;
 
     public float massGainPerScore;
+    public float maxPower;
+
+    // Previous fly mode
+    // max power 26
+    // max power radius 4
 }
