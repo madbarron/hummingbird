@@ -46,6 +46,7 @@ public class Player : MonoBehaviour
     private float prevRotation = 0.5f;
 
     private ITasty closestEdible;
+    private bool gameInProgress = false;
 
     public ITasty ClosestEdible { set { closestEdible = value; } }
 
@@ -53,6 +54,15 @@ public class Player : MonoBehaviour
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
+
+        // Sleep until the game begins
+        rigidbody2D.sleepMode = RigidbodySleepMode2D.StartAsleep;
+        rigidbody2D.Sleep();
+
+        flapAnimator.Play("Pitch", 1, .5f);
+        flapAnimator.Play("Flap Up", 0, 1);
+        flapAnimator.speed = 0;
+        Time.timeScale = 0;
     }
 
     // Update is called once per frame
@@ -60,7 +70,7 @@ public class Player : MonoBehaviour
     {
         if (godMode) health = 1;
 
-        if (dead)
+        if (dead || !gameInProgress)
         {
             return;
         }
@@ -110,20 +120,26 @@ public class Player : MonoBehaviour
         {
             flapping = false;
             flapAnimator.SetTrigger("Up");
+
         }
 
         // Chip health
         health -= healthChipRate * Time.deltaTime;
-        healthBar.SetPercent(health * healthBarMult);
 
         updateFacing();
+        updateHealthBar();
+    }
+
+    protected void updateHealthBar()
+    {
+        healthBar.SetPercent(health * healthBarMult);
     }
 
     // Point beak/body in direction of nearest tasty
     protected void updateFacing()
     {
         // Find where we want the beak to point
-        Vector3 target = rigidbody2D.velocity.x > 0 ? Vector3.right : Vector3.left;
+        Vector3 target = rigidbody2D.velocity.x >= 0 ? Vector3.right : Vector3.left;
 
         if (closestEdible != null)
         {
@@ -139,7 +155,7 @@ public class Player : MonoBehaviour
         float time = Mathf.MoveTowards(prevRotation, animationTime, pitchRate * Time.deltaTime);
 
         // Use animation to set us in the right rotation
-        flapAnimator.Play("Pitch", -1, time);
+        flapAnimator.Play("Pitch", 1, time);
         prevRotation = time;
 
         // Flip left/right
@@ -184,6 +200,16 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void StartGame()
+    {
+        gameInProgress = true;
+        rigidbody2D.sleepMode = RigidbodySleepMode2D.NeverSleep;
+        rigidbody2D.WakeUp();
+        flapAnimator.speed = 1;
+        Time.timeScale = 1;
+        updateHealthBar();
+    }
+
     public void Eat()
     {
         if (dead)
@@ -205,6 +231,7 @@ public class Player : MonoBehaviour
             onGameOver?.Invoke();
             rigidbody2D.constraints = RigidbodyConstraints2D.None;
             healthBar.gameObject.SetActive(false);
+            flapAnimator.speed = 0;
         }
     }
 }
