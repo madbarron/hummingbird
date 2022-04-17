@@ -116,22 +116,22 @@ public class Player : MonoBehaviour
                 wingBeatSource.Play();
 
                 // Find relative direction and distance
-                Vector3 direction3 = Camera.main.ScreenToWorldPoint(new Vector3(clickLocation.x, clickLocation.y)) - transform.position;
+                Vector2 direction2 = Camera.main.ScreenToWorldPoint(new Vector3(clickLocation.x, clickLocation.y)) - transform.position;
 
                 // Scale input to unit circle, 1 magnitude is 100% power
-                direction3 /= maxPowerRadius;
+                direction2 = Vector2.ClampMagnitude(direction2 / maxPowerRadius, 1);
 
                 // Clamp desired vector according to remaining health
                 float maxAvailablePower = Mathf.Clamp(health / healthPowerDrain, 0, 1);
-                direction3 = Vector3.ClampMagnitude(direction3, maxAvailablePower);
+                direction2 = Vector2.ClampMagnitude(direction2, maxAvailablePower);
 
                 // Pay for the flap
-                health -= healthPowerDrain * direction3.magnitude;
+                health -= healthPowerDrain * direction2.magnitude;
 
                 // Scale from input to physics
-                direction3 *= maxPower;
+                direction2 *= maxPower;
 
-                rigidbody2D.AddForce(new Vector2(direction3.x, direction3.y), ForceMode2D.Impulse);
+                rigidbody2D.AddForce(direction2, ForceMode2D.Impulse);
             }
         }
         else if (flapping)

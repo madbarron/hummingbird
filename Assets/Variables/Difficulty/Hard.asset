@@ -19,4 +19,4 @@ MonoBehaviour:
   healthPowerDrain: 0.2
   healthChipRate: 0.05
   massGainPerScore: 0.05
-  maxPower: 30
+  maxPower: 12
