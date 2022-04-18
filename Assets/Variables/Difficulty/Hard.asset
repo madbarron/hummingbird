@@ -16,7 +16,7 @@ MonoBehaviour:
   pollinatorMode: 0
   drinkRate: 0.55
   flowerCapacity: 3
-  healthPowerDrain: 0.2
+  healthPowerDrain: 0.3
   healthChipRate: 0.05
   massGainPerScore: 0.05
-  maxPower: 12
+  maxPower: 16

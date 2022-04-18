@@ -3761,7 +3761,7 @@ MonoBehaviour:
   wingBeatSource: {fileID: 1892470097}
   drinkAudioSource: {fileID: 1892470099}
   maxPower: 20
-  maxPowerRadius: 3
+  maxPowerRadius: 5
   pitchRate: 2
   massGainPerScore: 0.025
   godMode: 0

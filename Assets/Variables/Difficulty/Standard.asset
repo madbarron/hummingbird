@@ -18,5 +18,5 @@ MonoBehaviour:
   flowerCapacity: 2
   healthPowerDrain: 0.1
   healthChipRate: 0
-  massGainPerScore: 0
+  massGainPerScore: 0.05
   maxPower: 8
