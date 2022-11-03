@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Behavior to look for the closest tasty item and tell Player about it
+/// </summary>
 [RequireComponent(typeof(Collider2D))]
 public class Smeller : MonoBehaviour
 {
@@ -34,16 +37,13 @@ public class Smeller : MonoBehaviour
         }
 
         // Deliver smell report to brain
-        if (closestItem != null)
-        {
-            player.ClosestEdible = closestItem;
-        }
-        else
-        {
-            player.ClosestEdible = null;
-        }
+        player.ClosestEdible = closestItem;
     }
 
+    /// <summary>
+    /// Something possibly tasty has entered our smell radius
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         ITasty tasty = collision.GetComponent<ITasty>();
@@ -54,6 +54,10 @@ public class Smeller : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Something tasty might have just left our smell radius
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnTriggerExit2D(Collider2D collision)
     {
         ITasty tasty = collision.GetComponent<ITasty>();

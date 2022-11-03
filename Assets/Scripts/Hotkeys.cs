@@ -4,6 +4,9 @@ using UnityEngine;
 
 using UnityEngine.Events;
 
+/// <summary>
+/// Define and expose certain hotkey presses to the scene via unity events
+/// </summary>
 public class Hotkeys : MonoBehaviour
 {
     public UnityEvent onRestart;

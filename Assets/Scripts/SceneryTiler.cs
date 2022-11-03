@@ -2,21 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Class to create scenery to the left and right of the camera, and optionally remove it when it's too far away
+/// </summary>
 public class SceneryTiler : MonoBehaviour
 {
     public Transform Camera;
+
+    // Distance ahead and behind to build stuff
     public float bufferRight;
     public float bufferLeft;
 
+    // Library of tile options. They are all assumed to be tileWidth units wide
     public List<GameObject> tilePrefabs;
     public float tileWidth;
 
-    public List<GameObject> tiles = new List<GameObject>();
+    // Whether the objects should skip deletion
     public bool persist = false;
+
+    // Instantiated game objects. These are in order, the first element being the leftmost in the scene.
+    private List<GameObject> tiles = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
     {
+        // Seed tiles array with a starting tile
         if (tiles.Count == 0)
         {
             GameObject tile = Instantiate(tilePrefabs[0], transform);
@@ -99,6 +109,9 @@ public class SceneryTiler : MonoBehaviour
         return nextPrefab;
     }
 
+    /// <summary>
+    /// A random element from the list of tile prefabs
+    /// </summary>
     protected GameObject randomPrefab
     {
         get

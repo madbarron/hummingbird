@@ -9,7 +9,7 @@ using TMPro;
 [RequireComponent(typeof(AudioSource))]
 public class Player : MonoBehaviour
 {
-    private Rigidbody2D rigidbody2D;
+    private new Rigidbody2D rigidbody2D;
 
     [Header("Connections")]
     [SerializeField]
@@ -274,11 +274,20 @@ public class Player : MonoBehaviour
     {
         if (!dead)
         {
+            // Make sure we don't keep flapping and eating
             dead = true;
+
+            // Trigger unity event so the death animation can play
             onGameOver?.Invoke();
+
+            // Allow physics body to ragdoll
             rigidbody2D.constraints = RigidbodyConstraints2D.None;
+
+            // Update graphics
             healthBar.gameObject.SetActive(false);
             flapAnimator.speed = 0;
+
+            // Change music track
             gameMusicSource.Stop();
             gameOverMusicSource.Play();
         }

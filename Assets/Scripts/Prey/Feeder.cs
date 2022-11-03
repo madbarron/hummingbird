@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+/// <summary>
+/// A feeder has energy that the bird can consume over time.
+/// </summary>
 public class Feeder : MonoBehaviour, ITasty
 {
     public float maxEnergy = 1;
@@ -19,12 +21,6 @@ public class Feeder : MonoBehaviour, ITasty
         applyDifficulty();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //GetComponent<Animator>().Play("Drain", 0, 1 - (energy / maxEnergy));
-    }
-
     /// <summary>
     /// Drains energy from the feeder.
     /// </summary>
@@ -38,6 +34,10 @@ public class Feeder : MonoBehaviour, ITasty
         return delivered;
     }
 
+    /// <summary>
+    /// Returns true if the bird wants to eat this
+    /// </summary>
+    /// <returns></returns>
     public bool IsTasty()
     {
         return energy > 0;

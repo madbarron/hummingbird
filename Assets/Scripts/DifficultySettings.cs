@@ -15,8 +15,4 @@ public class DifficultySettings : ScriptableObject
 
     public float massGainPerScore;
     public float maxPower;
-
-    // Previous fly mode
-    // max power 26
-    // max power radius 4
 }
